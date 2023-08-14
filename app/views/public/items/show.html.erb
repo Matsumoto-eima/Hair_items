@@ -1,2 +1,33 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class='container'>
+  <div class='row'>
+  		<h2>アイテム詳細</h2>
+  		  <tr>
+         <td>
+            <%= image_tag @item.get_profile_image, size:"100x100" %><br>
+            <%= @item.user.name %>
+            <% end %>
+          </td>
+          <td><%= @item.description %></td>
+
+             <td id="favorite-<%= @item.id %>">
+              <%= render "favorites/btn", book: @book %>
+          </td>
+          <td id="comment_counter">
+             <%= render "item_comments/counter", item: @item %>
+           </td>
+          <% if @item.user == current_user %>
+            <td><%= link_to 'アイテム編集', edit_item_path(@item), class: "btn btn-sm btn-success edit_book_#{@item.id}" %></td>
+            <td><%= link_to 'アイテム削除', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@item.id}"%></td>
+          <% end %>
+        </tr>
+      </table>
+      <div id="item-comments-index">
+      <%= render "item_comments/index" ,  item: @item %><br>
+      </div>
+
+      <%= render "item_comments/form" ,  item: @item , item_comment: @item_comment  %>
+       </div>
+ </div>
+    </div>
+  </div>
+</div>

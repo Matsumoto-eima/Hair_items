@@ -1,2 +1,39 @@
-<h1>Public::Items#edit</h1>
-<p>Find me in app/views/public/items/edit.html.erb</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+<p id = "notice"></p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-sm-12 col-md-8 col-lg-5 px-5 mx-auto">
+      <h2>アイテム編集</h2>
+      <% if @item.errors.any? %>
+  <main><div class = "errors"><%= @item.errors.count %> errors prohibited this book from being saved:</div>
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul></main>
+<% end %>
+      <%= form_with model: @item do |f| %>
+      <div>
+      <label for = "item_name">
+        アイテム名
+      </label><br>
+      <%= f.text_field :name %>
+      </div>
+      <div>
+      <label for = "book_opinion">
+        アイテム説明文
+      </label><br>
+      <%= f.text_area :description %>
+      </div>
+      <div class = "form-group">
+      <%= f.submit "更新", class: 'btn btn-sm btn-success' %><br>
+      </div>
+<% end %>
+      <span class = "link"><%= link_to "アイテム詳細", item_path(@item.id) %></span>
+|
+<span class = "link"><%= link_to "アイテム一覧", items_path %></span>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,27 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+
+  <thead>
+    <tr>
+      <th></th>
+      <th>アイテム名</th>
+      <th>種類</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items.each do |item| %>
+      <tr>
+        <td>
+          <%= image_tag items.get_profile_image, size:'50x50' %>
+          <% end %>
+        </td>
+        <td><%= link_to item.name, item, class: "item_#{item.id}" %></td>
+        <td><%= item.description%></td>
+        <!--いいね機能ajax-partial-->
+        <td id="favorite-<%= item.id %>">
+              <%= render "favorites/btn", item: item %>
+          </td>
+       <td>コメント数:<span id="comment_count"><%= item.item_comments.count %></span></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

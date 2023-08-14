@@ -4,12 +4,7 @@ Rails.application.routes.draw do
     get 'users/show'
     get 'users/edit'
     get 'users/check'
-  end
-  namespace :public do
-    get 'items/new'
-    get 'items/edit'
-    get 'items/show'
-    get 'items/index'
+    resources :items, only: [:index, :show, :edit, :update, :destroy, :create]
   end
 
   root "public/homes#top"
