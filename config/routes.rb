@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     get 'users/show'
     get 'users/edit'
     get 'users/check'
-    resources :items, only: [:index, :show, :edit, :update, :destroy, :create]
+    resources :items, only: [:index, :show, :edit, :update, :destroy, :create] do
+     resources :item_comments, only: [:create, :destroy]
+   end
   end
 
   root "public/homes#top"

@@ -20,14 +20,22 @@
             <td><%= link_to 'アイテム削除', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@item.id}"%></td>
           <% end %>
         </tr>
-      </table>
       <div id="item-comments-index">
-      <%= render "item_comments/index" ,  item: @item %><br>
-      </div>
+      <p>コメント件数：<%= @item.item_comments.count %></p>
+  <% @item.item_comments.each do |item_comment| %>
+    <%= item_comment.user.name %>
+    <%= item_comment.created_at.strftime('%Y/%m/%d') %><%= item_comment.comment %>
+    <% if item_comment.user == current_user %>
+      <%= link_to "削除", item_item_comment_path(item_comment.item, item_comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@item, @item_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
 
-      <%= render "item_comments/form" ,  item: @item , item_comment: @item_comment  %>
-       </div>
- </div>
     </div>
   </div>
 </div>
