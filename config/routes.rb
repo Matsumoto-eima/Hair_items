@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'users/edit'
     get 'users/check'
     resources :items, only: [:index, :show, :edit, :update, :destroy, :create] do
+     resource :favorites, only: [:create, :destroy]
      resources :item_comments, only: [:create, :destroy]
    end
   end
