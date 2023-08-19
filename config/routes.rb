@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :public do
-    get 'users/show'
-    get 'users/edit'
-    get 'users/check'
+    resources :users, only: [:edit,:show,:check,:update] do
+    get "/relationships/followings" => "relationships#followings" ,as: "followings"
+    get "/relationships/followers" => "relationships#followers" ,as: "followers"
+     resource :relationships, only: [:create, :destroy]
+   end
     resources :items, only: [:index, :show, :edit, :update, :destroy, :create] do
      resource :favorites, only: [:create, :destroy]
      resources :item_comments, only: [:create, :destroy]
