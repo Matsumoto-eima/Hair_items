@@ -48,6 +48,6 @@ class Public::ItemsController < ApplicationController
    private
 
   def book_params
-    params.require(:item).permit(:name, :description, :image)
+    params.require(:item).permit(:name, :description, :image, :star)
   end
 end
