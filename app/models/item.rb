@@ -3,7 +3,7 @@ class Item < ApplicationRecord
    belongs_to :user
    has_many :item_comments, dependent: :destroy
    has_many :favorites, dependent: :destroy
-
+  validates :category, presence: true
   validates :name, presence:true
   validates :description, presence:true,length:{maximum:200}
 

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :public do
+    get 'tagsearches/search', to: 'tagsearches#search'
     resources :users, only: [:edit,:show,:check,:update] do
     get "/relationships/followings" => "relationships#followings" ,as: "followings"
     get "/relationships/followers" => "relationships#followers" ,as: "followers"
