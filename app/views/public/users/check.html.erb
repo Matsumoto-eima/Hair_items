@@ -1,2 +1,25 @@
-<h1>Public::Users#check</h1>
-<p>Find me in app/views/public/users/check.html.erb</p>
+<div class="container">
+  <div class="row my-3">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 mb-5 offset-md-4">
+      <h3>本当に退会しますか？</h3>
+      </div>
+      <p class = "col-6 mb-5 text-center offset-md-3">退会すると、会員登録情報が<br>
+      なくなります。<br>
+      退会する場合は、「退会する」をクリックしてください。</p>
+
+  </div>
+  <div class="row offset-md-4">
+    <div class="col-3 mb-5">
+      <%= link_to "退会しない", public_user_show_path(current_user), class:"btn btn-success" %>
+    </div>
+    <div class="col-3 mb-4">
+      <%= link_to "退会する", public_users_withdraw_path, class:"btn btn-danger", method: :patch, data: { confirm: "本当に退会しますか？" } %>
+    </div>
+  </div>
+</div>
+
+
