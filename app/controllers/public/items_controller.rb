@@ -6,7 +6,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user_id = current_user.id
     if @item.save
-      redirect_to item_path(@item), notice: "You have created book successfully."
+      redirect_to item_path(@item)
     else
       @books = Book.all
       render 'index'

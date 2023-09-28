@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  root "public/homes#top"
+  get '/about' => 'public/homes#about'
+  get '/admin' => 'admin/homes#top'
+
   namespace :public do
     get 'tagsearches/search', to: 'tagsearches#search'
     resources :users, only: [:edit,:show,:check,:update] do
@@ -13,9 +17,6 @@ Rails.application.routes.draw do
    end
   end
 
-  root "public/homes#top"
-  get '/about' => 'public/homes#about'
-  get '/admin' => 'admin/homes#top'
   # 顧客用
 # URL /customers/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
@@ -28,5 +29,9 @@ devise_for :users,skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
+
+  namespace :admin do
+    resources :users, only: [:index, :show, :edit, :update]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
