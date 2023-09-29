@@ -47,7 +47,7 @@ class Public::ItemsController < ApplicationController
 
    private
 
-  def book_params
+  def item_params
     params.require(:item).permit(:name, :description, :image, :star, :category)
   end
 end

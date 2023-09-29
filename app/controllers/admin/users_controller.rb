@@ -23,7 +23,7 @@ class Admin::UsersController < ApplicationController
   private
 
    def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :is_quit_status)
    end
 
 end

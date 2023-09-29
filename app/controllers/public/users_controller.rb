@@ -36,7 +36,7 @@ class Public::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :is_quit_status)
   end
 
   def ensure_correct_user
