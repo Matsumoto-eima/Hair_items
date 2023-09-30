@@ -8,13 +8,13 @@
     </tr>
   </thead>
   <tbody>
-    <% items.each do |item| %>
+    <% @items.each do |item| %>
       <tr>
         <td>
           <%= image_tag items.get_profile_image, size:'50x50' %>
           <% end %>
         </td>
-        <td><%= link_to item.name, item, class: "item_#{item.id}" %></td>
+        <td><%= link_to @item.name, @items, class: "item_#{item.id}" %></td>
         <td><%= item.description%></td>
         <td>
 　　<% if @item.category.present? %>
@@ -27,6 +27,4 @@
           </td>
        <p><%= link_to "#{item.item_comments.count} コメント", item_path(item.id) %></p>
       </tr>
-    <% end %>
   </tbody>
-</table>
