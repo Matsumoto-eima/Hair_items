@@ -1,4 +1,4 @@
-class Pulic::TagsearchesController < ApplicationController
+class Public::TagsearchesController < ApplicationController
   def search
     @model = Item  #search機能とは関係なし
     @word = params[:content]
