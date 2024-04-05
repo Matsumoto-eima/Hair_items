@@ -14,7 +14,7 @@
           <%= image_tag items.get_profile_image, size:'50x50' %>
           <% end %>
         </td>
-        <td><%= link_to @item.name, @items, class: "item_#{item.id}" %></td>
+        <td><%= link_to item.name ,public_item_path %></td>
         <td><%= item.description%></td>
         <td>
 　　<% if @item.category.present? %>

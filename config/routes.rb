@@ -15,6 +15,9 @@ devise_for :admins, skip: [:registrations, :passwords] ,controllers: {
   get '/admin' => 'admin/homes#top'
 
   namespace :public do
+    resources :items, only: [:index, :show, :edit, :update, :destroy, :create] do
+     resource :favorites, only: [:create, :destroy]
+     resources :item_comments, only: [:create, :destroy]
     get 'tagsearches/search', to: 'tagsearches#search'
     get 'users/check'
     get 'users/mypage', to: 'users#show', as: 'mypage'
@@ -24,10 +27,7 @@ devise_for :admins, skip: [:registrations, :passwords] ,controllers: {
     get "/relationships/followings" => "relationships#followings" ,as: "followings"
     get "/relationships/followers" => "relationships#followers" ,as: "followers"
      resource :relationships, only: [:create, :destroy]
-   end
-    resources :items, only: [:index, :show, :edit, :update, :destroy, :create] do
-     resource :favorites, only: [:create, :destroy]
-     resources :item_comments, only: [:create, :destroy]
+    end
    end
 
 

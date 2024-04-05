@@ -8,7 +8,7 @@ class Public::ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item)
     else
-      @books = Book.all
+      @items = Item.all
       render 'index'
     end
   end
@@ -35,13 +35,15 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
+      @item = Item.find(params[:item_id])
       @items = Item.all
       @item_new = Item.new
       @user = current_user
   end
 
   def destroy
-    @item.destroy
+    item = Item.find(params[:id])
+    item.destroy
     redirect_to items_path
   end
 
